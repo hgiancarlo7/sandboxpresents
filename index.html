@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandbox Presents</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #1a1a18;
+      --offblack: #222220;
+      --beige:   #e8d9be;
+      --beige-dim: rgba(232, 217, 190, 0.55);
+      --beige-faint: rgba(232, 217, 190, 0.12);
+      --white:   #f0ece3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 48px;
+      background: linear-gradient(to bottom, rgba(26,26,24,0.9) 0%, transparent 100%);
+      transition: background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(26,26,24,0.97);
+      border-bottom: 0.5px solid var(--beige-faint);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      position: relative;
+      width: 68px;
+      height: 42px;
+      border: 1.5px solid var(--beige);
+    }
+    .logo-sand {
+      position: absolute;
+      top: 4px; left: 6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: var(--beige);
+      letter-spacing: 1px;
+    }
+    .logo-box {
+      position: absolute;
+      bottom: 4px; right: 6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: var(--beige);
+      letter-spacing: 1px;
+    }
+    .logo-presents {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--beige-dim);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--beige-dim);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--beige); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    /* Poster image fallback — replace hero-poster.jpg with your still frame */
+    .hero-poster {
+      position: absolute;
+      inset: 0;
+      background: var(--offblack);
+      /* background-image: url('hero-poster.jpg'); */
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,26,24,0.35) 0%,
+        rgba(26,26,24,0.2) 50%,
+        rgba(26,26,24,0.75) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeUp 1.2s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-logo-large {
+      position: relative;
+      width: 200px;
+      height: 120px;
+      border: 2.5px solid var(--beige);
+    }
+    .hero-logo-large .hero-sand {
+      position: absolute;
+      top: 12px; left: 16px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--beige);
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+    .hero-logo-large .hero-box {
+      position: absolute;
+      bottom: 10px; right: 14px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--beige);
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+    .hero-sub {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--beige-dim);
+    }
+    .hero-cta {
+      margin-top: 8px;
+      display: inline-block;
+      border: 1px solid var(--beige);
+      color: var(--beige);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .hero-cta:hover {
+      background: var(--beige);
+      color: var(--black);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 1.6s ease 0.4s both;
+    }
+    .hero-scroll span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,217,190,0.35);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(232,217,190,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 100px 48px; }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(232,217,190,0.4);
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      border-bottom: 0.5px solid var(--beige-faint);
+    }
+    .about-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-text {
+      font-size: 18px;
+      line-height: 1.9;
+      color: rgba(240,236,227,0.75);
+      font-weight: 300;
+    }
+
+    /* ── WORK ── */
+    .work { padding-bottom: 80px; }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .work-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--offblack);
+    }
+    /* Replace these background-colors with background-image: url('event-photo.jpg') */
+    .work-item:nth-child(1) { background-color: #272522; }
+    .work-item:nth-child(2) { background-color: #201f1e; }
+    .work-item:nth-child(3) { background-color: #252421; }
+    .work-item:nth-child(4) { background-color: #1e1e1c; }
+    .work-item:nth-child(5) { background-color: #232220; }
+    .work-item:nth-child(6) { background-color: #1c1c1a; }
+    .work-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .work-item:hover .work-bg { transform: scale(1.06); }
+    .work-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,26,24,0.82);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .work-item:hover .work-hover { opacity: 1; }
+    .work-hover-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--beige);
+      letter-spacing: 2px;
+    }
+    .work-hover-meta {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(232,217,190,0.5);
+    }
+    .work-placeholder-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(232,217,190,0.1);
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    /* ── WHAT WE DO ── */
+    .services {
+      border-top: 0.5px solid var(--beige-faint);
+      border-bottom: 0.5px solid var(--beige-faint);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .service-card {
+      padding: 40px 36px;
+      border: 0.5px solid var(--beige-faint);
+    }
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      color: rgba(232,217,190,0.3);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+    .service-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--beige);
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
+    .service-desc {
+      font-size: 14px;
+      color: rgba(240,236,227,0.5);
+      line-height: 1.8;
+    }
+
+    /* ── CONTACT ── */
+    .contact { text-align: center; }
+    .contact-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 8vw, 96px);
+      color: var(--beige);
+      letter-spacing: 4px;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .contact-sub {
+      font-size: 13px;
+      color: rgba(232,217,190,0.45);
+      letter-spacing: 2px;
+      margin-bottom: 36px;
+    }
+    .contact-email {
+      display: inline-block;
+      font-size: 15px;
+      color: var(--beige);
+      letter-spacing: 2px;
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba(232,217,190,0.45);
+      padding-bottom: 3px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-email:hover {
+      color: var(--white);
+      border-color: var(--beige);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 24px 48px;
+      border-top: 0.5px solid var(--beige-faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(232,217,190,0.25);
+      letter-spacing: 1px;
+    }
+    .footer-social a {
+      font-size: 11px;
+      color: rgba(232,217,190,0.25);
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--beige); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      footer { padding: 20px 24px; }
+      .hero-logo-large { width: 150px; height: 90px; }
+      .hero-logo-large .hero-sand,
+      .hero-logo-large .hero-box { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <span class="logo-sand">SAND</span>
+        <span class="logo-box">BOX</span>
+      </div>
+      <span class="logo-presents">Presents</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <!-- To use your video: add a <video> tag inside .hero with autoplay muted loop playsinline -->
+  <!-- Example: <video class="hero-video" autoplay muted loop playsinline poster="hero-poster.jpg">
+                  <source src="hero-loop.mp4" type="video/mp4">
+                </video> -->
+  <section class="hero">
+    <div class="hero-poster"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-logo-large">
+        <span class="hero-sand">SAND</span>
+        <span class="hero-box">BOX</span>
+      </div>
+      <p class="hero-sub">Presents</p>
+      <a href="#contact" class="hero-cta">Work with us</a>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-label">About</div>
+    <div class="about-inner">
+      <p class="about-text">
+        <!-- Replace this with your paragraph -->
+        Sandbox Presents is a Los Angeles–based creative events company producing
+        intimate shows, brand activations, and artist content experiences.
+        We build the room, set the tone, and make sure the night is worth remembering —
+        and worth watching back.
+      </p>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="section-label">The Work</div>
+    <div class="work-grid">
+
+      <!-- Event 1 — replace style="background-image:url(...)" with your photo -->
+      <div class="work-item">
+        <div class="work-bg" style="/* background-image: url('events/diego-rimbaud.jpg') */"></div>
+        <div class="work-placeholder-dot"></div>
+        <div class="work-hover">
+          <div class="work-hover-title">Diego Rimbaud</div>
+          <div class="work-hover-meta">Jul 25, 2025 &nbsp;·&nbsp; The Haus Plant</div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="work-item">
+        <div class="work-bg" style="/* background-image: url('events/after-wes.jpg') */"></div>
+        <div class="work-placeholder-dot"></div>
+        <div class="work-hover">
+          <div class="work-hover-title">After Wes</div>
+          <div class="work-hover-meta">Aug 8, 2025 &nbsp;·&nbsp; The Haus Plant</div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="work-item">
+        <div class="work-bg" style="/* background-image: url('events/bag-raiders.jpg') */"></div>
+        <div class="work-placeholder-dot"></div>
+        <div class="work-hover">
+          <div class="work-hover-title">Bag Raiders</div>
+          <div class="work-hover-meta">Sep 5, 2025 &nbsp;·&nbsp; The Haus Plant</div>
+        </div>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="work-item">
+        <div class="work-bg" style="/* background-image: url('events/mascolo.jpg') */"></div>
+        <div class="work-placeholder-dot"></div>
+        <div class="work-hover">
+          <div class="work-hover-title">Mascolo</div>
+          <div class="work-hover-meta">Oct 31, 2025 &nbsp;·&nbsp; Fu's Palace</div>
+        </div>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="work-item">
+        <div class="work-bg" style="/* background-image: url('events/topanga.jpg') */"></div>
+        <div class="work-placeholder-dot"></div>
+        <div class="work-hover">
+          <div class="work-hover-title">Topanga Sunset Sessions</div>
+          <div class="work-hover-meta">Jan 18, 2026</div>
+        </div>
+      </div>
+
+      <!-- Placeholder 6th cell -->
+      <div class="work-item" style="display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,217,190,0.18);">More coming</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="services">
+    <div class="section-label">What we do</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Independent Shows</div>
+        <div class="service-desc">Curated events with a distinct creative vision — from intimate venue shows to larger productions worth showing up for.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Brand Activations</div>
+        <div class="service-desc">We build live experiences for brands that want to show up in culture — not just advertise in it.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Artist &amp; Label Projects</div>
+        <div class="service-desc">Content-first shows for artists, labels, and managers who want real moments that live well beyond the night.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-label">Get in touch</div>
+    <div class="contact-heading">Let's make<br>something.</div>
+    <p class="contact-sub">Bookings, collabs, and new ideas welcome.</p>
+    <a href="mailto:hello@sandboxpresents.com" class="contact-email">hello@sandboxpresents.com</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">&copy; 2026 Sandbox Presents</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/sandboxpresents" target="_blank">@sandboxpresents</a>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav background on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+</body>
+</html>
