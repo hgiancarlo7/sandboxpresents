@@ -463,67 +463,44 @@
   </section>
 
   <!-- WORK -->
-  <section class="work" id="work">
-    <div class="section-label">The Work</div>
-    <div class="work-grid">
-
-      <!-- Event 1 — replace style="background-image:url(...)" with your photo -->
-      <div class="work-item">
-        <div class="work-bg" style="background-image: url('diego-rimbaud.jpg');"></div>
-        <div class="work-placeholder-dot"></div>
-        <div class="work-hover">
-          <div class="work-hover-title">Diego Rimbaud</div>
-          <div class="work-hover-meta">Jul 25, 2025 &nbsp;·&nbsp; The Haus Plant</div>
-        </div>
-      </div>
-
-      <!-- Event 2 -->
-      <div class="work-item">
-        <div class="work-bg" style="background-image: url('after-wes.jpg');"></div>
-        <div class="work-placeholder-dot"></div>
-        <div class="work-hover">
-          <div class="work-hover-title">After Wes</div>
-          <div class="work-hover-meta">Aug 8, 2025 &nbsp;·&nbsp; The Haus Plant</div>
-        </div>
-      </div>
-
-      <!-- Event 3 -->
-      <div class="work-item">
-        <div class="work-bg" style="background-image: url('bag-raiders.jpg');"></div>
-        <div class="work-placeholder-dot"></div>
-        <div class="work-hover">
-          <div class="work-hover-title">Bag Raiders</div>
-          <div class="work-hover-meta">Sep 5, 2025 &nbsp;·&nbsp; The Haus Plant</div>
-        </div>
-      </div>
-
-      <!-- Event 4 -->
-      <div class="work-item">
-        <div class="work-bg" style="background-image: url('mascolo.jpg');"></div>
-        <div class="work-placeholder-dot"></div>
-        <div class="work-hover">
-          <div class="work-hover-title">Mascolo</div>
-          <div class="work-hover-meta">Oct 31, 2025 &nbsp;·&nbsp; Fu's Palace</div>
-        </div>
-      </div>
-
-      <!-- Event 5 -->
-      <div class="work-item">
-        <div class="work-bg" style="background-image: url('sunset-sessions.jpg');"></div>
-        <div class="work-placeholder-dot"></div>
-        <div class="work-hover">
-          <div class="work-hover-title">Topanga Sunset Sessions</div>
-          <div class="work-hover-meta">Jan 18, 2026 &nbsp;·&nbsp; Topanga Starlight Studios</div>
-        </div>
-      </div>
-
-      <!-- Placeholder 6th cell -->
-      <div class="work-item" style="display:flex;align-items:center;justify-content:center;">
-        <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,217,190,0.18);">More coming</span>
-      </div>
-
+  <!-- GALLERY -->
+<section class="gallery" id="work">
+  <div class="section-label">Gallery</div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('photo1.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo1.jpg');"></div>
     </div>
-  </section>
+    <div class="gallery-item" onclick="openLightbox('photo2.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo2.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo3.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo3.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo4.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo4.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo5.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo5.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo6.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo6.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo7.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo7.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo8.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo8.jpg');"></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('photo9.jpg')">
+      <div class="gallery-bg" style="background-image: url('photo9.jpg');"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
 
   <!-- WHAT WE DO -->
   <section class="services">
