@@ -236,8 +236,11 @@
 
     /* ── ABOUT ── */
     .about {
-      border-bottom: 0.5px solid var(--beige-faint);
-    }
+  border-bottom: 0.5px solid var(--beige-faint);
+  background: var(--black);
+  position: relative;
+  z-index: 1;
+}
     .about-inner {
       max-width: 760px;
       margin: 0 auto;
@@ -415,8 +418,13 @@
       .hero-logo-large { width: 150px; height: 90px; }
       .hero-logo-large .hero-sand,
       .hero-logo-large .hero-box { font-size: 38px; }
-    }/* GALLERY */
-.gallery { padding-bottom: 80px; }
+/* GALLERY */
+.gallery {
+  padding-bottom: 80px;
+  background: var(--black);
+  position: relative;
+  z-index: 1;
+}
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
