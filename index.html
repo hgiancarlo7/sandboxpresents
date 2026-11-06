@@ -18,6 +18,7 @@
       --beige-dim: rgba(232, 217, 190, 0.55);
       --beige-faint: rgba(243, 235, 224, 0.3);
       --white:   #f0ece3;
+      --section-space: 60px;
     }
 
     html {
@@ -117,7 +118,7 @@
       object-fit: cover;
       opacity: 0.55;
     }
-    /* Poster image fallback — replace hero-poster.jpg with your still frame */
+    /* Poster image fallback */
     .hero-poster {
       position: absolute;
       inset: 0;
@@ -229,7 +230,7 @@
     }
 
     /* ── SECTION SHARED ── */
-    section { padding: 20px 48px; }
+    section { padding: var(--section-space) 48px; }
     .section-label {
   font-size: 16px;
   letter-spacing: 2.5px;
@@ -326,9 +327,7 @@
     }
 
     /* ── WHAT WE DO ── */
-    .services {
-  padding-top: 80px;
-}
+    .services {}
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -363,7 +362,6 @@
     /* ── CONTACT ── */
     .contact {
   text-align: center;
-  padding-top: 80px;
 }
     .contact-heading {
       font-family: 'Bebas Neue', sans-serif;
@@ -371,6 +369,7 @@
       color: var(--beige);
       letter-spacing: 4px;
       line-height: 1;
+      margin-top: 16px;
       margin-bottom: 8px;
     }
     .contact-sub {
@@ -420,7 +419,8 @@
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
       .nav-links { display: none; }
-      section { padding: 40px 24px; }
+      :root { --section-space: 40px; }
+      section { padding: var(--section-space) 24px; }
       .work-grid { grid-template-columns: repeat(2, 1fr); }
       .services-grid { grid-template-columns: 1fr; }
       footer { padding: 20px 24px; }
@@ -431,8 +431,6 @@
 
     /* ── GALLERY ── */
    .gallery {
-  padding-top: 60px;
-  padding-bottom: 40px;
   background: var(--black);
   position: relative;
   z-index: 1;
@@ -486,7 +484,6 @@
     }
     /* RECENT EVENTS */
 .events {
-  padding-bottom: 80px;
   background: var(--black);
   position: relative;
   z-index: 1;
@@ -571,6 +568,73 @@
       .reveal { opacity: 1; transform: none; transition: none; }
       .hero-video { animation: none; }
     }
+
+    /* ── WHAT WE DO (four columns) ── */
+    .services-grid { grid-template-columns: repeat(4, 1fr); gap: 40px; }
+    .service-card {
+      padding: 24px 0 0;
+      border: none;
+      border-top: 1px solid var(--beige-faint);
+    }
+    .service-card::after { left: 0; right: 0; top: -1px; bottom: auto; }
+    .service-card:hover { background: none; }
+    .service-num { font-size: 15px; color: var(--beige); margin-bottom: 14px; }
+    .service-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .service-desc { font-size: 14px; line-height: 1.75; color: rgba(240,236,227,0.6); }
+
+    /* ── PRIVATE ENGAGEMENTS ── */
+    .engagements { background: var(--black); position: relative; z-index: 1; }
+    .engagements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .engagement-card {
+      border: 1px solid var(--beige-faint);
+      padding: 22px 22px 24px;
+      transition: border-color 0.5s ease, background 0.5s ease;
+    }
+    .engagement-card:hover { border-color: rgba(232,217,190,0.45); background: rgba(232,217,190,0.03); }
+    .engagement-type {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--beige);
+      margin-bottom: 10px;
+    }
+    .engagement-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      line-height: 1.1;
+      letter-spacing: 1.5px;
+      color: var(--beige);
+      margin-bottom: 8px;
+    }
+    .engagement-meta {
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: rgba(232,217,190,0.5);
+      margin-bottom: 12px;
+    }
+    .engagement-desc { font-size: 13px; line-height: 1.7; color: rgba(240,236,227,0.6); }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 32px; }
+    }
+    @media (max-width: 600px) {
+      .engagements-grid { grid-template-columns: 1fr; max-width: 480px; }
+    }
+    @media (max-width: 520px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -624,18 +688,45 @@
     <div class="services-grid">
       <div class="service-card">
         <div class="service-num">01</div>
-        <div class="service-title">Sandbox Concerts</div>
-        <div class="service-desc">One-off show concepts built around specific artists, environments, and emotions. Sandbox handles location scouting, production, promotion, and everything in between. Each show is designed so that the environment and the music are inseparable.</div>
+        <div class="service-title">Talent Booking</div>
+        <div class="service-desc">Live bands, DJs, and headline artists. Offers, negotiation, contracts, and artist advancing.</div>
       </div>
       <div class="service-card">
         <div class="service-num">02</div>
-        <div class="service-title">Sandbox Sets</div>
-        <div class="service-desc">No-audience performances filmed in unconventional locations. Each set explores a unique intersection between space & sound.  A natural companion to a release, tour, or simply a moment worth capturing, each set is professionally recorded and produced.</div>
+        <div class="service-title">Production</div>
+        <div class="service-desc">Sound, lighting, staging, and rentals. Engineering, vendors, COIs, and management on the day.</div>
       </div>
       <div class="service-card">
         <div class="service-num">03</div>
-        <div class="service-title">Corporate &amp; Brand Events</div>
-        <div class="service-desc">From black-tie productions to brand activation pop-ups, Sandbox designs events that guests remember. Sandbox offers full-scale event curation & production, from talent booking, staging, sound, lighting, photography, and videography.</div>
+        <div class="service-title">Creative &amp; Promo</div>
+        <div class="service-desc">Event titles and copy, flyers and invitations, RSVP and ticketing pages, listings.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">Film &amp; Photo</div>
+        <div class="service-desc">Photo and video from our creative network. Recorded sets and cutdowns after the night.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVATE ENGAGEMENTS -->
+  <section class="engagements" id="engagements">
+    <div class="section-label">Private Engagements</div>
+    <div class="engagements-grid">
+      <div class="engagement-card">
+        <div class="engagement-title">Private celebration</div>
+        <div class="engagement-meta">Fine dining venue &middot; 3 bands &middot; 200 guests</div>
+        <div class="engagement-desc">Three live bands across the evening. The full rental and engineering package for the celebration.</div>
+      </div>
+      <div class="engagement-card">
+        <div class="engagement-title">USA Today bestseller&rsquo;s book launch</div>
+        <div class="engagement-meta">Fireside chat &middot; Corporate sponsors &middot; 75 guests</div>
+        <div class="engagement-desc">A launch and signing for the author&rsquo;s latest release. Venue, program, content capture, and sponsor coordination.</div>
+      </div>
+      <div class="engagement-card">
+        <div class="engagement-title">Founders&rsquo; black tie summit</div>
+        <div class="engagement-meta">Founders, investors, policymakers &middot; 200 guests</div>
+        <div class="engagement-desc">Talent buying on the client&rsquo;s behalf. Handled artist outreach, offers, performance contracts, and sound production for the evening&rsquo;s set.</div>
       </div>
     </div>
   </section>
@@ -742,6 +833,7 @@ document.addEventListener('keydown', e => {
     const revealGroups = [
       ['.section-label', 0],
       ['.service-card', 0.12],
+      ['.engagement-card', 0.12],
       ['.events-item', 0.08],
       ['.gallery-item', 0.05],
       ['.contact > *', 0.1],
